@@ -183,4 +183,25 @@ class TangRotOverCircleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : TangRotOverCircleView) {
+        private val animator : Animator = Animator(view)
+        private val troc : TangRotOverCircle = TangRotOverCircle(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            troc.draw(canvas, paint)
+            animator.animate {
+                troc.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            troc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
