@@ -47,7 +47,7 @@ fun Canvas.drawTROCNode(i : Int, scale : Float, paint : Paint) {
     for (j in 0..(lines - 1)) {
         save()
         rotate(90f * j.sf() * sc1.divideScale(j, lines))
-        drawLine(-size / 2, -size, size / 2, -size, paint)
+        drawLine(-size, -size, size, -size, paint)
         restore()
     }
     restore()
@@ -136,6 +136,7 @@ class TangRotOverCircleView(ctx : Context) : View(ctx) {
 
         fun draw(canvas : Canvas, paint : Paint) {
             canvas.drawTROCNode(i, state.scale, paint)
+            next?.draw(canvas, paint)
         }
 
         fun update(cb : (Int, Float) -> Unit) {
