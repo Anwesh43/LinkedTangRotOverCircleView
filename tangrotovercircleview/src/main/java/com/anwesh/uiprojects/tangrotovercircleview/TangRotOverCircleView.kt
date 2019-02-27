@@ -205,4 +205,13 @@ class TangRotOverCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : TangRotOverCircleView {
+            val view : TangRotOverCircleView = TangRotOverCircleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
